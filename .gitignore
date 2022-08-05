@@ -1,0 +1,14 @@
+# Project exclude paths
+/.gradle/
+/build/
+/departure.repository/build/
+/departure.service/build/
+
+
+/mydb.tmp/
+/mydb.lck
+/mydb.log
+/mydb.properties
+/mydb.script
+
+/.idea/
