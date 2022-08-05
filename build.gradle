@@ -1,0 +1,90 @@
+plugins {
+    id 'java'
+}
+
+group 'by.seledtsovaos'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    hsqldb
+}
+
+dependencies {
+    hsqldb group: 'org.hsqldb', name: 'hsqldb', version: '2.6.0'
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.22'
+
+
+}
+
+/**
+ * Starts the database.
+ */
+task startDatabase {
+    group "Database"
+    description "Starts the database."
+    doLast {
+        javaexec {
+            main = "org.hsqldb.server.Server";
+            args = ['--database.0', 'mydb', '--dbname.0', 'xdb']
+            classpath = configurations.hsqldb;
+        }
+    }
+}
+
+/**
+* Connects checkstyle to the project assembly for the whole project.
+* Setting encoding during compilation for the whole project.
+*/
+subprojects {
+
+    apply plugin: 'checkstyle'
+    apply plugin: 'java'
+
+    checkstyle {
+        toolVersion = '7.1.1'
+        configFile = file("${rootProject.projectDir}/config/checkstyle/checkstyle.xml")
+ignoreFailures = false
+}
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+}
+/**
+ * Runs scripts to create tables in the database.
+ */
+task createSql {
+    group "Database"
+    description "Creates table in database."
+    doLast {
+        def driverName = 'org.hsqldb.jdbc.JDBCDriver';
+
+        ant.sql(classpath: configurations.hsqldb.asPath,
+            driver: driverName,
+            url: 'jdbc:hsqldb:hsql://localhost/xdb',
+            userid: 'SA',
+            password: '') {
+            fileset(file: 'departure.repository/src/main/resources/createTable.sql')
+        }
+    }
+}
+/**
+ * Runs scripts to drop tables from database.
+ */
+task dropSql {
+    group "Database"
+    description "Drops table from database."
+    doLast {
+        def driverName = 'org.hsqldb.jdbc.JDBCDriver';
+        ant.sql(classpath: configurations.hsqldb.asPath,
+            driver: driverName,
+            url: 'jdbc:hsqldb:hsql://localhost/xdb',
+            userid: 'SA',
+            password: '') {
+            fileset(file: 'departure.repository/src/main/resources/dropTable.sql')
+        }
+    }
+}
