@@ -61,7 +61,7 @@ public class AirportDaoImpl implements AirportDao {
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         try {
             jdbcTemplate.update(DELETE_AIRPORT, id);
             LOGGER.info("Successfully deleted airport with id = " + id);

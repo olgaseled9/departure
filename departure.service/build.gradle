@@ -10,8 +10,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation project(':departure.repository')
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.22'
 }
 
 test {

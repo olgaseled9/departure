@@ -61,7 +61,7 @@ public class PassengerDaoImpl implements PassengerDao {
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         try {
             jdbcTemplate.update(DELETE_PASSENGER, id);
             LOGGER.info("Successfully deleted passenger with id = " + id);

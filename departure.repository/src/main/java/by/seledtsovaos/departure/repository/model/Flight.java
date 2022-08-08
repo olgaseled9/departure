@@ -67,7 +67,10 @@ public class Flight {
             return false;
         }
         Flight flight = (Flight) o;
-        return Objects.equals(flightId, flight.flightId) && Objects.equals(flightNumber, flight.flightNumber) && Objects.equals(airportId, flight.airportId) && Objects.equals(countryId, flight.countryId);
+        return Objects.equals(flightId, flight.flightId)
+            && Objects.equals(flightNumber, flight.flightNumber)
+            && Objects.equals(airportId, flight.airportId)
+            && Objects.equals(countryId, flight.countryId);
     }
 
     @Override

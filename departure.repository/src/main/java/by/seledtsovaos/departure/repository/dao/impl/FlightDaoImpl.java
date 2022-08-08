@@ -60,7 +60,7 @@ public class FlightDaoImpl implements FlightDao {
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         try {
             jdbcTemplate.update(DELETE_FLIGHT, id);
             LOGGER.info("Successfully deleted flight with id = " + id);

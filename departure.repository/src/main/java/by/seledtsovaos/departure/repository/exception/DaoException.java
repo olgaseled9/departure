@@ -12,12 +12,4 @@ public class DaoException extends RuntimeException {
     public DaoException(String message, Throwable cause) {
         super(message, cause);
     }
-
-    /**
-     * Constructs a new exception with the specified detail message.
-     * @param message describing an exception
-     */
-    public DaoException(String message) {
-        super(message);
-    }
 }

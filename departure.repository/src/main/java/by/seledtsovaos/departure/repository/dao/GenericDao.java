@@ -30,7 +30,7 @@ public interface GenericDao<I, T> {
      * @param id ID of entry to look for and delete {@link T}
      * @throws DaoException if not in the database specified {@link T}
      */
-    void delete(I id);
+    void deleteById(I id);
 
     /**
      * Obtains {@link T} object with data of specified entity from database by its ID.

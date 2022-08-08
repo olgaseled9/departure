@@ -1,18 +1,27 @@
-package by.seledtsovaos.departure.repository.model;
+package by.seledtsovaos.departure.service.dto;
 
 import java.util.Objects;
 
 /**
- * Container for Airport entity data, getter and setter methods.
- * @see Airport
+ * Container for AirportDto representing data, getter and setter methods.
+ * @see AirportDto
  */
-public class Airport {
+public class AirportDto {
 
+    /**
+     * Airport's id
+     */
     private Long airportId;
+    /**
+     * Airport's name
+     */
     private String airportName;
-    private Long countryId;
+    /**
+     * Country of airport's location
+     */
+    private CountryDto country;
 
-    public Airport() {
+    public AirportDto() {
     }
 
     public Long getAirportId() {
@@ -31,20 +40,20 @@ public class Airport {
         this.airportName = airportName;
     }
 
-    public Long getCountryId() {
-        return countryId;
+    public CountryDto getCountry() {
+        return country;
     }
 
-    public void setCountryId(Long countryId) {
-        this.countryId = countryId;
+    public void setCountry(CountryDto country) {
+        this.country = country;
     }
 
     @Override
     public String toString() {
-        return "Airport{" +
+        return "AirportDto{" +
             "airportId=" + airportId +
             ", airportName='" + airportName + '\'' +
-            ", countryId=" + countryId +
+            ", countryDto=" + country +
             '}';
     }
 
@@ -56,14 +65,14 @@ public class Airport {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Airport airport = (Airport) o;
-        return Objects.equals(airportId, airport.airportId)
-            && Objects.equals(airportName, airport.airportName)
-            && Objects.equals(countryId, airport.countryId);
+        AirportDto that = (AirportDto) o;
+        return Objects.equals(airportId, that.airportId)
+            && Objects.equals(airportName, that.airportName)
+            && Objects.equals(country, that.country);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(airportId, airportName, countryId);
+        return Objects.hash(airportId, airportName, country);
     }
 }
