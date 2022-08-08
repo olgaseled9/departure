@@ -55,9 +55,7 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public void add(FlightDto flightDto) {
         try {
-            Flight flight = flightConverter.convertBack(flightDto);
-            flightDao.add(flight);
-            flightDto.setFlightId(flight.getFlightId());
+            flightDao.add(flightConverter.convertBack(flightDto));
         }
         catch (DaoException e) {
             throw new ServiceException("Not able to add new flight : " + flightDto, e);
@@ -75,7 +73,12 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public void update(FlightDto entity) {
-
+    public void update(FlightDto flightDto) {
+        try {
+            flightDao.update(flightConverter.convertBack(flightDto));
+        }
+        catch (DaoException e) {
+            throw new ServiceException("Flight is not updated : " + flightDto, e);
+        }
     }
 }

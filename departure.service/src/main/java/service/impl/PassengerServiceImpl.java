@@ -36,7 +36,7 @@ public class PassengerServiceImpl implements PassengerService {
             return passengerDtoList;
         }
         catch (DaoException e) {
-            throw new ServiceException("Not able to get all employees. ", e);
+            throw new ServiceException("Not able to get all passengers. ", e);
         }
     }
 
@@ -66,9 +66,7 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public void add(PassengerDto passengerDto) throws ServiceException {
         try {
-            Passenger passenger = passengerConverter.convertBack(passengerDto);
-            passengerDao.add(passenger);
-            passengerDto.setPassengerId(passenger.getPassengerId());
+            passengerDao.add(passengerConverter.convertBack(passengerDto));
         }
         catch (DaoException e) {
             throw new ServiceException("Not able to add new passenger : " + passengerDto, e);
@@ -78,8 +76,7 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public void update(PassengerDto passengerDto) throws ServiceException {
         try {
-            Passenger passenger = passengerConverter.convertBack(passengerDto);
-            passengerDao.update(passenger);
+            passengerDao.update(passengerConverter.convertBack(passengerDto));
         }
         catch (DaoException e) {
             throw new ServiceException("Passenger is not updated : " + passengerDto, e);

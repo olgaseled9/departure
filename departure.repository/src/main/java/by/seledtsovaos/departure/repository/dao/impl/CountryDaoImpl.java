@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import by.seledtsovaos.departure.repository.dao.CountryDao;
 import by.seledtsovaos.departure.repository.exception.DaoException;
 import by.seledtsovaos.departure.repository.model.Country;
-import by.seledtsovaos.departure.repository.model.CountryValue;
 
 /**
  * Is an implementation of the {@link CountryDao} interface.
@@ -49,16 +48,6 @@ public class CountryDaoImpl implements CountryDao {
         }
         catch (DataAccessException e) {
             throw new DaoException("Country not found with id = " + id, e);
-        }
-    }
-
-    @Override
-    public Country findCountryByName(CountryValue value) {
-        try {
-            return jdbcTemplate.queryForObject(FIND_COUNTRY_BY_NAME, new CountryMapper(), value.name());
-        }
-        catch (DataAccessException e) {
-            throw new DaoException("Country not found with name = " + value, e);
         }
     }
 }
