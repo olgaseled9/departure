@@ -3,9 +3,6 @@ P
  config/checkstyle/checkstyle.xml,e\1\e1f2dc84f565ee8ad14a89aa864c602bc570e082
 Œ
 \departure.repository/src/main/java/by/seledtsovaos/departure/repository/model/Passenger.java,6\1\610f5cb49b0c3243daefff7c1c405e4ee12e7ec9
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 ’
 bdeparture.repository/src/main/java/by/seledtsovaos/departure/repository/dao/impl/FlightMapper.java,5\a\5a905cb847a3af75d7cf0fc3aa84f73d2d015b9a
 •

@@ -1,6 +1,27 @@
-plugins {
-    id 'war'
-    id 'java'
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.bmuschko:gradle-tomcat-plugin:2.7.0"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: "com.bmuschko.tomcat"
+
+/**
+ * Provides the ability to deploy web applications in an embedded Tomcat web container in given location.
+ */
+tomcat {
+    httpPort = 8080
+    stopPort = 8081
+    httpsPort = 8443
+    ajpPort = 8009
+    contextPath = '/'
 }
 
 group 'by.seledtsovaos'
@@ -19,6 +40,11 @@ dependencies {
     compileOnly group: 'javax.servlet.jsp', name: 'jsp-api', version: '2.2'
     implementation group: 'jstl', name: 'jstl', version: '1.2'
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
+    def tomcatVersion = '8.0.42'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+        "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+        "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
 
 }
 
