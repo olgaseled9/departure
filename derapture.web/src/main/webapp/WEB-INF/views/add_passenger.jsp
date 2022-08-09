@@ -7,6 +7,9 @@
     <title>Editing a passenger</title>
 </head>
 <body>
+<nav>
+    <jsp:include page="header.jsp"/>
+</nav>
 <p>Editing a passenger</p>
 <form action="<%=request.getContextPath()%>/passenger/add" method="POST">
     <div>

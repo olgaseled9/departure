@@ -5,9 +5,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
-    <title>Editing a airport</title>
+    <title>Editing an airport</title>
 </head>
 <body>
+<nav>
+    <jsp:include page="header.jsp"/>
+</nav>
 <p>Editing a airport</p>
 <form action="<%=request.getContextPath()%>/airport/add" method="POST">
     <div>

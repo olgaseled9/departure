@@ -7,6 +7,9 @@
     <title>Flights</title>
 </head>
 <body>
+<nav>
+    <jsp:include page="header.jsp"/>
+</nav>
 <div>
     <p>List of flights</p>
     <div>

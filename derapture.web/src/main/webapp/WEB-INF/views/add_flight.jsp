@@ -8,6 +8,9 @@
     <title>Editing a flight</title>
 </head>
 <body>
+<nav>
+    <jsp:include page="header.jsp"/>
+</nav>
 <p>Editing a flight</p>
 <form action="<%=request.getContextPath()%>/flight/add" method="POST">
     <div>
