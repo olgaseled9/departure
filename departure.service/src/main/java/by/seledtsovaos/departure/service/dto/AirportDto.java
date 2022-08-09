@@ -2,6 +2,8 @@ package by.seledtsovaos.departure.service.dto;
 
 import java.util.Objects;
 
+import by.seledtsovaos.departure.repository.model.CountryValue;
+
 /**
  * Container for AirportDto representing data, getter and setter methods.
  * @see AirportDto
@@ -19,7 +21,7 @@ public class AirportDto {
     /**
      * Country of airport's location
      */
-    private CountryDto country;
+    private CountryValue country;
 
     public AirportDto() {
     }
@@ -40,20 +42,29 @@ public class AirportDto {
         this.airportName = airportName;
     }
 
-    public CountryDto getCountry() {
+    public CountryValue getCountry() {
         return country;
     }
 
-    public void setCountry(CountryDto country) {
+    public void setCountry(CountryValue country) {
         this.country = country;
     }
+
+    /**
+     * Checks if an object is new.
+     * @return true, if object is new
+     */
+    public boolean isNew() {
+        return this.getAirportId() == null;
+    }
+
 
     @Override
     public String toString() {
         return "AirportDto{" +
             "airportId=" + airportId +
             ", airportName='" + airportName + '\'' +
-            ", countryDto=" + country +
+            ", country=" + country +
             '}';
     }
 
@@ -68,7 +79,7 @@ public class AirportDto {
         AirportDto that = (AirportDto) o;
         return Objects.equals(airportId, that.airportId)
             && Objects.equals(airportName, that.airportName)
-            && Objects.equals(country, that.country);
+            && country == that.country;
     }
 
     @Override

@@ -1,9 +1,10 @@
-package service.impl;
+package by.seledtsovaos.departure.service.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import by.seledtsovaos.departure.repository.dao.PassengerDao;
 import by.seledtsovaos.departure.repository.exception.DaoException;
@@ -11,16 +12,16 @@ import by.seledtsovaos.departure.repository.model.Passenger;
 import by.seledtsovaos.departure.service.converter.PassengerConverter;
 import by.seledtsovaos.departure.service.dto.PassengerDto;
 import by.seledtsovaos.departure.service.exception.ServiceException;
-import service.PassengerService;
+import by.seledtsovaos.departure.service.services.PassengerService;
 
 /**
  * Is an implementation of the {@link PassengerService} interface.
  */
+@Service
 public class PassengerServiceImpl implements PassengerService {
 
     @Autowired
     private PassengerDao passengerDao;
-
     @Autowired
     private PassengerConverter passengerConverter;
 

@@ -1,4 +1,5 @@
 rootProject.name = 'departure'
 include 'departure.repository'
 include 'departure.service'
+include 'derapture.web'
 

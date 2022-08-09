@@ -1,9 +1,10 @@
-package service.impl;
+package by.seledtsovaos.departure.service.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import by.seledtsovaos.departure.repository.dao.AirportDao;
 import by.seledtsovaos.departure.repository.exception.DaoException;
@@ -11,11 +12,12 @@ import by.seledtsovaos.departure.repository.model.Airport;
 import by.seledtsovaos.departure.service.converter.AirportConverter;
 import by.seledtsovaos.departure.service.dto.AirportDto;
 import by.seledtsovaos.departure.service.exception.ServiceException;
-import service.AirportService;
+import by.seledtsovaos.departure.service.services.AirportService;
 
 /**
  * Is an implementation of the {@link AirportService} interface.
  */
+@Service
 public class AirportServiceImpl implements AirportService {
 
     @Autowired

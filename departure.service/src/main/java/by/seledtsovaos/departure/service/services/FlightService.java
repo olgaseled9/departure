@@ -1,4 +1,4 @@
-package service;
+package by.seledtsovaos.departure.service.services;
 
 import by.seledtsovaos.departure.service.dto.FlightDto;
 

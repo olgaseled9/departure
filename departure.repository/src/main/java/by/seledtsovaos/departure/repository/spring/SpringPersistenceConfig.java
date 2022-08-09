@@ -9,16 +9,11 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import by.seledtsovaos.departure.repository.dao.impl.AirportDaoImpl;
-import by.seledtsovaos.departure.repository.dao.impl.CountryDaoImpl;
-import by.seledtsovaos.departure.repository.dao.impl.FlightDaoImpl;
-import by.seledtsovaos.departure.repository.dao.impl.PassengerDaoImpl;
-
 /**
  * Application context configuration class.
  */
 @Configuration
-@ComponentScan(basePackages = {"by.seledtsovaos.departure"})
+@ComponentScan(basePackages = {"by.seledtsovaos.departure.repository"})
 @PropertySource(value = {"classpath:db.properties"})
 public class SpringPersistenceConfig {
 
@@ -40,24 +35,24 @@ public class SpringPersistenceConfig {
         return new JdbcTemplate(dataSource());
     }
 
-    @Bean
-    PassengerDaoImpl passengerDaoBean() {
-        return new PassengerDaoImpl(jdbcTemplate());
-    }
-
-    @Bean
-    FlightDaoImpl flightDaoBean() {
-        return new FlightDaoImpl(jdbcTemplate());
-    }
-
-    @Bean
-    CountryDaoImpl countryDaoBean() {
-        return new CountryDaoImpl(jdbcTemplate());
-    }
-
-    @Bean
-    AirportDaoImpl airportDaoBean() {
-        return new AirportDaoImpl(jdbcTemplate());
-    }
+//    @Bean
+//    PassengerDaoImpl passengerDaoBean() {
+//        return new PassengerDaoImpl(jdbcTemplate());
+//    }
+//
+//    @Bean
+//    FlightDaoImpl flightDaoBean() {
+//        return new FlightDaoImpl(jdbcTemplate());
+//    }
+//
+////    @Bean
+////    CountryDaoImpl countryDaoBean() {
+////        return new CountryDaoImpl(jdbcTemplate());
+////    }
+//
+//    @Bean
+//    AirportDaoImpl airportDaoBean() {
+//        return new AirportDaoImpl(jdbcTemplate());
+//    }
 }
 

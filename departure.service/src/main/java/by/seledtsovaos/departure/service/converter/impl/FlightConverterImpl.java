@@ -1,6 +1,7 @@
 package by.seledtsovaos.departure.service.converter.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import by.seledtsovaos.departure.repository.dao.AirportDao;
 import by.seledtsovaos.departure.repository.dao.CountryDao;
@@ -15,6 +16,7 @@ import by.seledtsovaos.departure.service.dto.FlightDto;
 /**
  * Is an implementation of the {@link FlightConverter} interface.
  */
+@Component
 public class FlightConverterImpl implements FlightConverter {
 
     @Autowired
@@ -32,7 +34,7 @@ public class FlightConverterImpl implements FlightConverter {
         flightDto.setFlightId(flight.getFlightId());
         flightDto.setFlightNumber(flight.getFlightNumber());
         Country country = countryDao.findById(flight.getCountryId());
-        flightDto.setCountry(countryConverter.convertToDto(country));
+        flightDto.setCountry(country.getName());
         Airport airport = airportDao.findById(flight.getAirportId());
         flightDto.setAirport(airportConverter.convertToDto(airport));
         return flightDto;
@@ -44,7 +46,8 @@ public class FlightConverterImpl implements FlightConverter {
         flight.setFlightId(flightDto.getFlightId());
         flight.setFlightNumber(flightDto.getFlightNumber());
         flight.setAirportId(flightDto.getAirport().getAirportId());
-        flight.setCountryId(flightDto.getCountry().getCountryId());
+        Country country = countryDao.findByName(flightDto.getCountry());
+        flight.setCountryId(country.getCountryId());
         return flight;
     }
 }

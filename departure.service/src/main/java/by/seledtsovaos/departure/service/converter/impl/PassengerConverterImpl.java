@@ -1,6 +1,7 @@
 package by.seledtsovaos.departure.service.converter.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import by.seledtsovaos.departure.repository.dao.FlightDao;
 import by.seledtsovaos.departure.repository.model.Passenger;
@@ -12,6 +13,7 @@ import by.seledtsovaos.departure.service.dto.PassengerDto;
 /**
  * Is an implementation of the {@link PassengerConverter} interface.
  */
+@Component
 public class PassengerConverterImpl implements PassengerConverter {
 
     @Autowired

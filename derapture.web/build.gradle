@@ -1,4 +1,5 @@
 plugins {
+    id 'war'
     id 'java'
 }
 
@@ -7,14 +8,17 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
     implementation project(':departure.repository')
+    implementation project(':departure.service')
     implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.22'
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    compileOnly group: 'javax.servlet.jsp', name: 'jsp-api', version: '2.2'
+    implementation group: 'jstl', name: 'jstl', version: '1.2'
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
 }
 
-test {
-    useJUnitPlatform()
-}

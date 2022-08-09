@@ -1,5 +1,7 @@
 package by.seledtsovaos.departure.service.converter.impl;
 
+import org.springframework.stereotype.Component;
+
 import by.seledtsovaos.departure.repository.model.Country;
 import by.seledtsovaos.departure.service.converter.CountryConverter;
 import by.seledtsovaos.departure.service.dto.CountryDto;
@@ -7,6 +9,7 @@ import by.seledtsovaos.departure.service.dto.CountryDto;
 /**
  * Is an implementation of the {@link CountryConverter} interface.
  */
+@Component
 public class CountryConverterImpl implements CountryConverter {
 
     @Override

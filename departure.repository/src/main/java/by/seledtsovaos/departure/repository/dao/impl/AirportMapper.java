@@ -17,7 +17,7 @@ public class AirportMapper implements RowMapper<Airport> {
         Airport airport = new Airport();
         airport.setAirportId(resultSet.getLong("airport_id"));
         airport.setAirportName(resultSet.getString("airport_name"));
-        airport.setCountryId(resultSet.getLong("county_id"));
+        airport.setCountryId(resultSet.getLong("country_id"));
         return airport;
     }
 }

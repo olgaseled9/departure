@@ -1,9 +1,10 @@
-package service.impl;
+package by.seledtsovaos.departure.service.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import by.seledtsovaos.departure.repository.dao.CountryDao;
 import by.seledtsovaos.departure.repository.exception.DaoException;
@@ -11,11 +12,12 @@ import by.seledtsovaos.departure.repository.model.Country;
 import by.seledtsovaos.departure.service.converter.CountryConverter;
 import by.seledtsovaos.departure.service.dto.CountryDto;
 import by.seledtsovaos.departure.service.exception.ServiceException;
-import service.CountryService;
+import by.seledtsovaos.departure.service.services.CountryService;
 
 /**
  * Is an implementation of the {@link CountryService} interface.
  */
+@Service
 public class CountryServiceImpl implements CountryService {
 
     @Autowired
