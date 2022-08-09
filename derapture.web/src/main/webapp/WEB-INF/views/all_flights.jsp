@@ -28,13 +28,19 @@
         <c:forEach var="flight" items="${flights}">
             <tr>
                 <td class="table-value">${fn:escapeXml(flight.flightNumber)}</td>
-                <td class="table-value">${fn:escapeXml(flight.airport)}</td>
+                <td class="table-value">
+                    <c:forEach var="airport" items="${airports}">
+                        <option
+                                <c:if test="${flight.airportId eq airport.airportId}">selected</c:if>
+                                value="${airport.airportId}">${fn:escapeXml(airport.airportName)}</option>
+                    </c:forEach>
+                </td>
                 <td class="table-value">${fn:escapeXml(flight.country)}</td>
                 <td>
-                    <a href="/flight/add/(id=${flight.flightId})">Update</a>
+                    <a href="${pageContext.request.contextPath}/flight/update?id=${flight.flightId}">Update</a>
                 </td>
                 <td>
-                    <a href="/flight/remove/(id=${flight.flightId})">Delete</a>
+                    <a href="${pageContext.request.contextPath}/flight/remove?id=${flight.flightId}">Delete</a>
                 </td>
             </tr>
         </c:forEach>

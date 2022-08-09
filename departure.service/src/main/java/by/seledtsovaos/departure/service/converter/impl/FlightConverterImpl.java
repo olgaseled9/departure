@@ -3,13 +3,9 @@ package by.seledtsovaos.departure.service.converter.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import by.seledtsovaos.departure.repository.dao.AirportDao;
 import by.seledtsovaos.departure.repository.dao.CountryDao;
-import by.seledtsovaos.departure.repository.model.Airport;
 import by.seledtsovaos.departure.repository.model.Country;
 import by.seledtsovaos.departure.repository.model.Flight;
-import by.seledtsovaos.departure.service.converter.AirportConverter;
-import by.seledtsovaos.departure.service.converter.CountryConverter;
 import by.seledtsovaos.departure.service.converter.FlightConverter;
 import by.seledtsovaos.departure.service.dto.FlightDto;
 
@@ -21,12 +17,6 @@ public class FlightConverterImpl implements FlightConverter {
 
     @Autowired
     private CountryDao countryDao;
-    @Autowired
-    private AirportDao airportDao;
-    @Autowired
-    private CountryConverter countryConverter;
-    @Autowired
-    private AirportConverter airportConverter;
 
     @Override
     public FlightDto convertToDto(Flight flight) {
@@ -35,8 +25,7 @@ public class FlightConverterImpl implements FlightConverter {
         flightDto.setFlightNumber(flight.getFlightNumber());
         Country country = countryDao.findById(flight.getCountryId());
         flightDto.setCountry(country.getName());
-        Airport airport = airportDao.findById(flight.getAirportId());
-        flightDto.setAirport(airportConverter.convertToDto(airport));
+        flightDto.setAirportId(flight.getAirportId());
         return flightDto;
     }
 
@@ -45,7 +34,7 @@ public class FlightConverterImpl implements FlightConverter {
         Flight flight = new Flight();
         flight.setFlightId(flightDto.getFlightId());
         flight.setFlightNumber(flightDto.getFlightNumber());
-        flight.setAirportId(flightDto.getAirport().getAirportId());
+        flight.setAirportId(flightDto.getAirportId());
         Country country = countryDao.findByName(flightDto.getCountry());
         flight.setCountryId(country.getCountryId());
         return flight;

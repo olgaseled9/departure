@@ -1,7 +1,5 @@
 package by.seledtsovaos.departure.web.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import by.seledtsovaos.departure.service.dto.AirportDto;
 import by.seledtsovaos.departure.service.dto.FlightDto;
 import by.seledtsovaos.departure.service.services.AirportService;
 import by.seledtsovaos.departure.service.services.CountryService;
@@ -36,8 +33,8 @@ public class FlightController {
 
     @GetMapping("/all")
     public String getAllFlights(Model model) {
-        List<FlightDto> flights = flightService.getAll();
-        model.addAttribute("flights", flights);
+        model.addAttribute("flights", flightService.getAll());
+        model.addAttribute("airports", airportService.getAll());
         return "all_flights";
     }
 
@@ -50,10 +47,17 @@ public class FlightController {
     }
 
     @GetMapping("/add")
-    public String addFlightPage(FlightDto flightDto, Model model, AirportDto airportDto) {
-        model.addAttribute("airports", airportService.getAll());
-        model.addAttribute("countries", countryService.getAll());
+    public String addFlightPage(FlightDto flightDto, Model model) {
+        setAttributeToFlightPage(model);
         return "add_flight";
+    }
+
+    @GetMapping("/update")
+    public String updateAirportPage(@RequestParam("id") Long id, FlightDto flightDto, Model model) {
+        flightDto = flightService.findById(id);
+        model.addAttribute("flightDto", flightDto);
+        setAttributeToFlightPage(model);
+        return "update_flight";
     }
 
     @PostMapping("/add")
@@ -71,5 +75,10 @@ public class FlightController {
         else {
             return "add_flight";
         }
+    }
+
+    private void setAttributeToFlightPage(Model model) {
+        model.addAttribute("airports", airportService.getAll());
+        model.addAttribute("countries", countryService.getAll());
     }
 }

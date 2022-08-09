@@ -21,7 +21,7 @@ public class FlightDto {
     /**
      * Airport
      */
-    private AirportDto airport;
+    private Long airportId;
     /**
      * Country
      */
@@ -46,12 +46,12 @@ public class FlightDto {
         this.flightNumber = flightNumber;
     }
 
-    public AirportDto getAirport() {
-        return airport;
+    public Long getAirportId() {
+        return airportId;
     }
 
-    public void setAirport(AirportDto airport) {
-        this.airport = airport;
+    public void setAirportId(Long airportId) {
+        this.airportId = airportId;
     }
 
     public CountryValue getCountry() {
@@ -67,7 +67,7 @@ public class FlightDto {
         return "FlightDto{" +
             "flightId=" + flightId +
             ", flightNumber='" + flightNumber + '\'' +
-            ", airport=" + airport +
+            ", airportId=" + airportId +
             ", country=" + country +
             '}';
     }
@@ -80,6 +80,7 @@ public class FlightDto {
         return this.getFlightId() == null;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -91,12 +92,12 @@ public class FlightDto {
         FlightDto flightDto = (FlightDto) o;
         return Objects.equals(flightId, flightDto.flightId)
             && Objects.equals(flightNumber, flightDto.flightNumber)
-            && Objects.equals(airport, flightDto.airport)
-            && Objects.equals(country, flightDto.country);
+            && Objects.equals(airportId, flightDto.airportId)
+            && country == flightDto.country;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(flightId, flightNumber, airport, country);
+        return Objects.hash(flightId, flightNumber, airportId, country);
     }
 }
