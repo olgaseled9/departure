@@ -34,10 +34,11 @@ public class PassengerController {
     public String getAllUsers(Model model) {
         List<PassengerDto> passengers = passengerService.getAll();
         model.addAttribute("passengers", passengers);
+        model.addAttribute("flights", flightService.getAll());
         return "all_passengers";
     }
 
-    @GetMapping("/remove?id=")
+    @GetMapping("/remove")
     public String removePassengerById(@RequestParam("id") Long id) {
         if (id != null) {
             passengerService.removeById(id);
@@ -49,6 +50,14 @@ public class PassengerController {
     public String addPassengerPage(PassengerDto passengerDto, Model model) {
         model.addAttribute("flights", flightService.getAll());
         return "add_passenger";
+    }
+
+    @GetMapping("/update")
+    public String updatePassengerPage(@RequestParam("id") Long id, PassengerDto passengerDto, Model model) {
+        passengerDto = passengerService.findById(id);
+        model.addAttribute("passengerDto", passengerDto);
+        model.addAttribute("flights", flightService.getAll());
+        return "update_passenger";
     }
 
     @PostMapping("/add")

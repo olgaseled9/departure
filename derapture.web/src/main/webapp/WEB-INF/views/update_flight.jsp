@@ -25,6 +25,7 @@
         <select required name="airportId">
             <c:forEach var="airport" items="${airports}">
                 <option
+                        <c:if test="${airport.airportId eq flightDto.airportId}">selected</c:if>
                         value=${airport.airportId}>${airport.airportName}
                 </option>
             </c:forEach>
@@ -35,6 +36,7 @@
         <select required name="country">
             <c:forEach var="country" items="${countries}">
                 <option
+                        <c:if test="${country.name eq flightDto.country}">selected</c:if>
                         value="${country.name}">${country.name}</option>
             </c:forEach>
         </select>

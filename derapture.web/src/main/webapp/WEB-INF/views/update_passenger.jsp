@@ -4,13 +4,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
-    <title>Editing a passenger</title>
+    <title>Editing an airport</title>
 </head>
 <body>
 <nav>
     <jsp:include page="header.jsp"/>
 </nav>
-<p>Editing a passenger</p>
+<p>Editing a airport</p>
 <form action="<%=request.getContextPath()%>/passenger/add" method="POST">
     <div>
         <input type="hidden" name="passengerId" value="${passengerDto.passengerId}">
@@ -32,8 +32,8 @@
         <select required name="flightId">
             <c:forEach var="flight" items="${flights}">
                 <option
-                        value="${flight.flightId}">${flight.flightNumber}
-                </option>
+                        <c:if test="${flight.flightId eq passengerDto.flightId}">selected</c:if>
+                        value="${flight.flightId}">${flight.flightNumber}</option>
             </c:forEach>
         </select>
     </div>

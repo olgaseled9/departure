@@ -31,12 +31,17 @@
                 <td class="table-value">${fn:escapeXml(passenger.lastname)}</td>
                 <td class="table-value">${fn:escapeXml(passenger.firstname)}</td>
                 <td class="table-value">${fn:escapeXml(passenger.patronymic)}</td>
-                <td class="table-value">${fn:escapeXml(passenger.flight.flightNumber)}</td>
+                <td class="table-value">
+                    <c:forEach var="flight" items="${flights}">
+                        <option
+                                <c:if test="${flight.airportId eq passenger.flightId}">selected</c:if>
+                                value="${flight.airportId}">${fn:escapeXml(flight.flightNumber)}</option>
+                    </c:forEach></td>
                 <td>
-                    <a href="/passenger/add/(id=${passenger.passengerId})">Update</a>
+                    <a href="${pageContext.request.contextPath}/passenger/update?id=${passenger.passengerId}">Update</a>
                 </td>
                 <td>
-                    <a href="/passenger/remove/(id=${passenger.passengerId})">Delete</a>
+                    <a href="${pageContext.request.contextPath}/passenger/remove?id=${passenger.passengerId}">Delete</a>
                 </td>
             </tr>
         </c:forEach>

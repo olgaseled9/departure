@@ -7,7 +7,6 @@ import by.seledtsovaos.departure.repository.dao.FlightDao;
 import by.seledtsovaos.departure.repository.model.Passenger;
 import by.seledtsovaos.departure.service.converter.FlightConverter;
 import by.seledtsovaos.departure.service.converter.PassengerConverter;
-import by.seledtsovaos.departure.service.dto.FlightDto;
 import by.seledtsovaos.departure.service.dto.PassengerDto;
 
 /**
@@ -16,11 +15,6 @@ import by.seledtsovaos.departure.service.dto.PassengerDto;
 @Component
 public class PassengerConverterImpl implements PassengerConverter {
 
-    @Autowired
-    private FlightDao flightDao;
-    @Autowired
-    private FlightConverter flightConverter;
-
     @Override
     public PassengerDto convertToDto(Passenger passenger) {
         PassengerDto passengerDto = new PassengerDto();
@@ -28,8 +22,7 @@ public class PassengerConverterImpl implements PassengerConverter {
         passengerDto.setFirstname(passenger.getFirstname());
         passengerDto.setLastname(passenger.getLastname());
         passengerDto.setPatronymic(passenger.getPatronymic());
-        FlightDto flightDto = flightConverter.convertToDto(flightDao.findById(passenger.getFlightId()));
-        passengerDto.setFlight(flightDto);
+        passengerDto.setFlightId(passenger.getFlightId());
         return passengerDto;
     }
 
@@ -40,7 +33,7 @@ public class PassengerConverterImpl implements PassengerConverter {
         passenger.setFirstname(passengerDto.getFirstname());
         passenger.setLastname(passengerDto.getLastname());
         passenger.setPatronymic(passengerDto.getPatronymic());
-        passenger.setFlightId(passengerDto.getFlight().getFlightId());
+        passenger.setFlightId(passengerDto.getFlightId());
         return passenger;
     }
 }

@@ -1,5 +1,7 @@
 package by.seledtsovaos.departure.service.dto;
 
+import java.util.Objects;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -44,7 +46,7 @@ public class PassengerDto {
      */
     @NotNull
     @NotEmpty
-    private FlightDto flight;
+    private Long flightId;
 
 
     public String getFirstname() {
@@ -71,12 +73,20 @@ public class PassengerDto {
         this.patronymic = patronymic;
     }
 
-    public FlightDto getFlight() {
-        return flight;
+    public Long getFlightId() {
+        return flightId;
     }
 
-    public void setFlight(FlightDto flight) {
-        this.flight = flight;
+    public void setFlightId(Long flightId) {
+        this.flightId = flightId;
+    }
+
+    public Long getPassengerId() {
+        return passengerId;
+    }
+
+    public void setPassengerId(Long passengerId) {
+        this.passengerId = passengerId;
     }
 
     /**
@@ -87,7 +97,6 @@ public class PassengerDto {
         return this.getPassengerId() == null;
     }
 
-
     @Override
     public String toString() {
         return "PassengerDto{" +
@@ -95,15 +104,28 @@ public class PassengerDto {
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
             ", patronymic='" + patronymic + '\'' +
-            ", flight=" + flight +
+            ", flightId=" + flightId +
             '}';
     }
 
-    public Long getPassengerId() {
-        return passengerId;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PassengerDto that = (PassengerDto) o;
+        return Objects.equals(passengerId, that.passengerId)
+            && Objects.equals(firstname, that.firstname)
+            && Objects.equals(lastname, that.lastname)
+            && Objects.equals(patronymic, that.patronymic)
+            && Objects.equals(flightId, that.flightId);
     }
 
-    public void setPassengerId(Long passengerId) {
-        this.passengerId = passengerId;
+    @Override
+    public int hashCode() {
+        return Objects.hash(passengerId, firstname, lastname, patronymic, flightId);
     }
 }
