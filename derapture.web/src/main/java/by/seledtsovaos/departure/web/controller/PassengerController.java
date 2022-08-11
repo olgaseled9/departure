@@ -5,10 +5,14 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +33,16 @@ public class PassengerController {
     private PassengerService passengerService;
     @Autowired
     private FlightService flightService;
+
+
+    @Autowired
+    @Qualifier("passengerFormValidator")
+    private Validator validator;
+
+    @InitBinder
+    private void initBinder(WebDataBinder binder) {
+        binder.setValidator(validator);
+    }
 
     @GetMapping("/all")
     public String getAllUsers(Model model) {
@@ -54,8 +68,7 @@ public class PassengerController {
 
     @GetMapping("/update")
     public String updatePassengerPage(@RequestParam("id") Long id, PassengerDto passengerDto, Model model) {
-        passengerDto = passengerService.findById(id);
-        model.addAttribute("passengerDto", passengerDto);
+        model.addAttribute("passengerDto", passengerService.findById(id));
         model.addAttribute("flights", flightService.getAll());
         return "update_passenger";
     }

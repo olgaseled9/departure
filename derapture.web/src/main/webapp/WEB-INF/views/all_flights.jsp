@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>Flights</title>
+    <link href="../../style.css" rel="stylesheet">
 </head>
 <body>
 <nav>

@@ -1,11 +1,8 @@
 package by.seledtsovaos.departure.service.converter.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import by.seledtsovaos.departure.repository.dao.FlightDao;
 import by.seledtsovaos.departure.repository.model.Passenger;
-import by.seledtsovaos.departure.service.converter.FlightConverter;
 import by.seledtsovaos.departure.service.converter.PassengerConverter;
 import by.seledtsovaos.departure.service.dto.PassengerDto;
 
@@ -30,9 +27,9 @@ public class PassengerConverterImpl implements PassengerConverter {
     public Passenger convertBack(PassengerDto passengerDto) {
         Passenger passenger = new Passenger();
         passenger.setPassengerId(passengerDto.getPassengerId());
-        passenger.setFirstname(passengerDto.getFirstname());
-        passenger.setLastname(passengerDto.getLastname());
-        passenger.setPatronymic(passengerDto.getPatronymic());
+        passenger.setFirstname(passengerDto.getFirstname().trim());
+        passenger.setLastname(passengerDto.getLastname().trim());
+        passenger.setPatronymic(passengerDto.getPatronymic().trim());
         passenger.setFlightId(passengerDto.getFlightId());
         return passenger;
     }

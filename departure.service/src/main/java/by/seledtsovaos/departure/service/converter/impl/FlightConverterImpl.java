@@ -33,7 +33,7 @@ public class FlightConverterImpl implements FlightConverter {
     public Flight convertBack(FlightDto flightDto) {
         Flight flight = new Flight();
         flight.setFlightId(flightDto.getFlightId());
-        flight.setFlightNumber(flightDto.getFlightNumber());
+        flight.setFlightNumber(flightDto.getFlightNumber().trim());
         flight.setAirportId(flightDto.getAirportId());
         Country country = countryDao.findByName(flightDto.getCountry());
         flight.setCountryId(country.getCountryId());

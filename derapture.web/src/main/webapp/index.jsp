@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Departure</title>
+  <link href="style.css" rel="stylesheet">
 </head>
 <body>
 <br>

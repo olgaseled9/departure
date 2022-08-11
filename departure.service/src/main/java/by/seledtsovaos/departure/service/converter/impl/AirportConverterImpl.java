@@ -35,7 +35,7 @@ public class AirportConverterImpl implements AirportConverter {
     public Airport convertBack(AirportDto airportDto) {
         Airport airport = new Airport();
         airport.setAirportId(airportDto.getAirportId());
-        airport.setAirportName(airportDto.getAirportName());
+        airport.setAirportName(airportDto.getAirportName().trim());
         Country country = countryDao.findByName(airportDto.getCountry());
         airport.setCountryId(country.getCountryId());
         return airport;
