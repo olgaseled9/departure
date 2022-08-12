@@ -20,14 +20,5 @@ public interface GenericConverter<I, O> {
      * @return entity data object
      */
     O convertBack(I entity);
-
-    /**
-     * Check whether the input parameter into the field name matches the regex condition.
-     * @param someParameter which has entered into the field name on the update task page
-     * @return true, if the string is non-empty and matches the regex condition
-     */
-    static boolean isInvalidString(String someParameter, String regex) {
-        return someParameter.isEmpty() && someParameter.matches(regex);
-    }
 }
 

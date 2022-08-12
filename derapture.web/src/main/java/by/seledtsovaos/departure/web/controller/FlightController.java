@@ -3,10 +3,14 @@ package by.seledtsovaos.departure.web.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +34,15 @@ public class FlightController {
     private AirportService airportService;
     @Autowired
     private CountryService countryService;
+
+    @Autowired
+    @Qualifier("flightFormValidator")
+    private Validator validator;
+
+    @InitBinder
+    private void initBinder(WebDataBinder binder) {
+        binder.setValidator(validator);
+    }
 
     @GetMapping("/all")
     public String getAllFlights(Model model) {
@@ -62,7 +75,8 @@ public class FlightController {
 
     @PostMapping("/add")
     public String addFlight(@ModelAttribute("flightDto")
-    @Valid FlightDto flightDto, BindingResult bindingResult) {
+    @Valid FlightDto flightDto, BindingResult bindingResult, Model model) {
+        setAttributeToFlightPage(model);
         if (!bindingResult.hasErrors()) {
             if (flightDto.isNew()) {
                 flightService.add(flightDto);

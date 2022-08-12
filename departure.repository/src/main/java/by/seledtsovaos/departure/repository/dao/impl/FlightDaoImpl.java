@@ -27,7 +27,7 @@ public class FlightDaoImpl implements FlightDao {
     private static final String FIND_FLIGHT_BY_ID =
         "SELECT flight_id , flight_number, airport_id, country_id FROM flight WHERE flight_id = ?";
     private static final String UPDATE_FLIGHT =
-        "UPDATE flight SET flight_number = ?, airport_id = ?, country_id = ? WHERE flight_id=?";
+        "UPDATE flight SET flight_number = ?, airport_id = ?, country_id = ? WHERE flight_id = ?";
     private static final String ADD_FLIGHT =
         "INSERT INTO flight (flight_number, airport_id, country_id) VALUES (?,?,?)";
 

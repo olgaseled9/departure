@@ -2,11 +2,6 @@ package by.seledtsovaos.departure.service.dto;
 
 import java.util.Objects;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
 /**
  * Container for PassengerDto representing data, getter and setter methods.
  * @see PassengerDto
@@ -20,32 +15,18 @@ public class PassengerDto {
     /**
      * Passenger firstname
      */
-    @NotNull
-    @NotEmpty
-    @Size(min = 1, max = 40)
-    @Pattern(regexp = "[A-Za-zА-Яа-яЁё\\s-]*", message = "You can use the Latin and Russian alphabet.")
     private String firstname;
     /**
      * Passenger lastname
      */
-    @NotNull
-    @NotEmpty
-    @Size(min = 1, max = 40)
-    @Pattern(regexp = "[A-Za-zА-Яа-яЁё\\s-]*", message = "You can use the Latin and Russian alphabet.")
     private String lastname;
     /**
      * Passenger patronymic
      */
-    @NotNull
-    @NotEmpty
-    @Size(min = 1, max = 40)
-    @Pattern(regexp = "[A-Za-zА-Яа-яЁё\\s-]*", message = "You can use the Latin and Russian alphabet.")
     private String patronymic;
     /**
      * Flight
      */
-    @NotNull
-    @NotEmpty
     private Long flightId;
 
 

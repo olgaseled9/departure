@@ -48,7 +48,7 @@ public class PassengerController {
     public String getAllUsers(Model model) {
         List<PassengerDto> passengers = passengerService.getAll();
         model.addAttribute("passengers", passengers);
-        model.addAttribute("flights", flightService.getAll());
+        setAttributeFlightToPage(model);
         return "all_passengers";
     }
 
@@ -62,20 +62,21 @@ public class PassengerController {
 
     @GetMapping("/add")
     public String addPassengerPage(PassengerDto passengerDto, Model model) {
-        model.addAttribute("flights", flightService.getAll());
+        setAttributeFlightToPage(model);
         return "add_passenger";
     }
 
     @GetMapping("/update")
     public String updatePassengerPage(@RequestParam("id") Long id, PassengerDto passengerDto, Model model) {
         model.addAttribute("passengerDto", passengerService.findById(id));
-        model.addAttribute("flights", flightService.getAll());
+        setAttributeFlightToPage(model);
         return "update_passenger";
     }
 
     @PostMapping("/add")
     public String addUpdatePassenger(@ModelAttribute("passengerDto")
-    @Valid PassengerDto passengerDto, BindingResult bindingResult) {
+    @Valid PassengerDto passengerDto, BindingResult bindingResult, Model model) {
+        setAttributeFlightToPage(model);
         if (!bindingResult.hasErrors()) {
             if (passengerDto.isNew()) {
                 passengerService.add(passengerDto);
@@ -88,5 +89,9 @@ public class PassengerController {
         else {
             return "add_passenger";
         }
+    }
+
+    private void setAttributeFlightToPage(Model model) {
+        model.addAttribute("flights", flightService.getAll());
     }
 }

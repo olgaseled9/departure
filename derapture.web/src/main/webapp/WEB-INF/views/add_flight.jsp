@@ -1,8 +1,8 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
         pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Editing a flight</title>
@@ -13,36 +13,38 @@
     <jsp:include page="header.jsp"/>
 </nav>
 <p>Editing a flight</p>
-<form action="<%=request.getContextPath()%>/flight/add" method="POST">
+<form:form action="/flight/add" method="post" modelAttribute="flightDto">
     <div>
         <input type="hidden" name="flightId" value="${flightDto.flightId}">
     </div>
     <div>
         <p>Flight number</p>
-        <input type="text" name="flightNumber" value="${fn:escapeXml(flightDto.flightNumber)}">
+        <form:input path="flightNumber"/>
+        <form:errors path="flightNumber"/>
     </div>
     <div>
         <p>Airport</p>
-        <select required name="airportId">
+        <form:select path="airportId">
             <c:forEach var="airport" items="${airports}">
                 <option
                         value=${airport.airportId}>${airport.airportName}
                 </option>
             </c:forEach>
-        </select>
+        </form:select>
     </div>
     <div>
         <p>Country</p>
-        <select required name="country">
+        <form:select path="country">
             <c:forEach var="country" items="${countries}">
-                <option
-                        value="${country.name}">${country.name}</option>
+                <form:option
+                        value="${country.name}">${country.name}
+                </form:option>
             </c:forEach>
-        </select>
+        </form:select>
     </div>
     <button type="submit">Save</button>
     <button type="button" onclick="goBack()">Cancel</button>
-</form>
+</form:form>
 <script>
     function goBack() {
         window.history.back();

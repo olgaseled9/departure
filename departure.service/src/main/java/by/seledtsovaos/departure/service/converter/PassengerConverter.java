@@ -11,6 +11,5 @@ import by.seledtsovaos.departure.service.dto.PassengerDto;
 public interface PassengerConverter extends GenericConverter<PassengerDto, Passenger> {
 
 
-
 }
 

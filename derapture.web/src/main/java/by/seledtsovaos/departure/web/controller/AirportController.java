@@ -5,10 +5,14 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +34,15 @@ public class AirportController {
     @Autowired
     private CountryService countryService;
 
+    @Autowired
+    @Qualifier("airportFormValidator")
+    private Validator validator;
+
+    @InitBinder
+    private void initBinder(WebDataBinder binder) {
+        binder.setValidator(validator);
+    }
+
     @GetMapping("/all")
     public String getAllAirports(Model model) {
         List<AirportDto> airports = airportService.getAll();
@@ -47,7 +60,7 @@ public class AirportController {
 
     @GetMapping("/add")
     public String addAirportPage(AirportDto airportDto, Model model) {
-        model.addAttribute("countries", countryService.getAll());
+        setAttributeCountryToPage(model);
         return "add_airport";
     }
 
@@ -55,14 +68,14 @@ public class AirportController {
     public String updateAirportPage(@RequestParam("id") Long id, AirportDto airportDto, Model model) {
         airportDto = airportService.findById(id);
         model.addAttribute("airportDto", airportDto);
-        model.addAttribute("countries", countryService.getAll());
+        setAttributeCountryToPage(model);
         return "update_airport";
     }
 
     @PostMapping("/add")
     public String addUpdatePassenger(@ModelAttribute("airportDto")
     @Valid AirportDto airportDto, BindingResult bindingResult, Model model) {
-        model.addAttribute("countries", countryService.getAll());
+        setAttributeCountryToPage(model);
         if (!bindingResult.hasErrors()) {
             if (airportDto.isNew()) {
                 airportService.add(airportDto);
@@ -75,5 +88,9 @@ public class AirportController {
         else {
             return "add_airport";
         }
+    }
+
+    private void setAttributeCountryToPage(Model model) {
+        model.addAttribute("countries", countryService.getAll());
     }
 }

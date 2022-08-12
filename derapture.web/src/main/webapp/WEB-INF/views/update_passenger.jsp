@@ -2,6 +2,8 @@
         pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
     <title>Editing an airport</title>
@@ -12,35 +14,38 @@
     <jsp:include page="header.jsp"/>
 </nav>
 <p>Editing a airport</p>
-<form action="<%=request.getContextPath()%>/passenger/add" method="POST">
+<form:form action="/passenger/add" method="post" modelAttribute="passengerDto">
     <div>
         <input type="hidden" name="passengerId" value="${passengerDto.passengerId}">
     </div>
     <div>
         <p>Lastname</p>
-        <input type="text" name="lastname" value="${fn:escapeXml(passengerDto.lastname)}">
+        <form:input path="lastname"/>
+        <form:errors path="lastname"/>
     </div>
     <div>
         <p>Firstname</p>
-        <input type="text" name="firstname" value="${fn:escapeXml(passengerDto.firstname)}">
+        <form:input path="firstname"/>
+        <form:errors path="firstname"/>
     </div>
     <div>
         <p>Patronymic</p>
-        <input type="text" name="patronymic" value="${fn:escapeXml(passengerDto.patronymic)}">
+        <form:input path="patronymic"/>
+        <form:errors path="patronymic"/>
     </div>
     <div>
         <p>Flight</p>
-        <select required name="flightId">
+        <form:select path="flightId">
             <c:forEach var="flight" items="${flights}">
-                <option
-                        <c:if test="${flight.flightId eq passengerDto.flightId}">selected</c:if>
-                        value="${flight.flightId}">${flight.flightNumber}</option>
+                <form:option
+                        value="${flight.flightId}">${flight.flightNumber}
+                </form:option>
             </c:forEach>
-        </select>
+        </form:select>
     </div>
     <button type="submit">Save</button>
     <button type="button" onclick="goBack()">Cancel</button>
-</form>
+</form:form>
 <script>
     function goBack() {
         window.history.back();
