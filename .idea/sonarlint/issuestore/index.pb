@@ -47,9 +47,6 @@ _departure.repository/src/main/java/by/seledtsovaos/departure/repository/model/C
 kdeparture.repository/src/main/java/by/seledtsovaos/departure/repository/spring/SpringPersistenceConfig.java,2\1\2152cccb7e48748ad63164cf11ff3ccc6faaf74a
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 ‰
 Ydeparture.repository/src/main/java/by/seledtsovaos/departure/repository/model/Flight.java,f\4\f415bd58ca0d006cf3435fefcab25df6f32319b0
 …
