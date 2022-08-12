@@ -4,6 +4,10 @@
 /departure.repository/build/
 /departure.service/build/
 
+.idea/
+*.iml
+*.ipr
+*.iws
 
 /mydb.tmp/
 /mydb.lck
@@ -17,5 +21,4 @@
 *.iml
 *.ipr
 *.iws
-
-
+*.
