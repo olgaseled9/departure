@@ -1,11 +1,15 @@
 package by.seledtsovaos.departure.web.config;
 
+import java.util.Properties;
+
 import javax.servlet.Filter;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import by.seledtsovaos.departure.repository.spring.SpringPersistenceConfig;
@@ -41,5 +45,23 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
         encodingFilter.setEncoding("UTF-8");
         encodingFilter.setForceEncoding(true);
         return new Filter[] {encodingFilter};
+    }
+
+    @Bean(name = "simpleMappingExceptionResolver")
+    public SimpleMappingExceptionResolver createSwitchableSimpleMappingExceptionResolver() {
+        // Turn exception resolving off to start
+        boolean initialState = false;
+
+        SimpleMappingExceptionResolver resolver = new SimpleMappingExceptionResolver();
+
+        Properties mappings = new Properties();
+        String errorJspPage = "error_page";
+        mappings.setProperty("DaoException", errorJspPage);
+        mappings.setProperty("ServiceException", errorJspPage);
+
+        resolver.setExceptionMappings(mappings); // None by default
+        resolver.setExceptionAttribute("exception"); // Default is "exception"
+        resolver.setDefaultErrorView(errorJspPage);
+        return resolver;
     }
 }

@@ -9,11 +9,10 @@
 <h1>Error Page</h1>
 <p>Application has encountered an error.</p>
 <a href="<%=request.getContextPath()%>/">Home page</a>
-
 <!--
     Failed URL: ${url}
-    Exception:  ${exception.message}
-        <c:forEach items="${exception.stackTrace}" var="ste">    ${ste}
+    Exception:  ${exception}
+        <c:forEach  items="${exception.stackTrace}" var="ste">    ${ste}
     </c:forEach>
   -->
 </body>
