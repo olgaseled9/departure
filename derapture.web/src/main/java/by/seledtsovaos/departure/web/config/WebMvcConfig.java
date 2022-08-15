@@ -26,7 +26,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Bean
-    public UrlBasedViewResolver getViewResovler() {
+    public UrlBasedViewResolver getViewResolver() {
         UrlBasedViewResolver urlBasedViewResolver = new UrlBasedViewResolver();
         urlBasedViewResolver.setViewClass(JstlView.class);
         urlBasedViewResolver.setPrefix("/WEB-INF/views/");

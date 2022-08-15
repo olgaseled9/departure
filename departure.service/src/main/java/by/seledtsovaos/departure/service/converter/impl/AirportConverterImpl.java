@@ -7,7 +7,6 @@ import by.seledtsovaos.departure.repository.dao.CountryDao;
 import by.seledtsovaos.departure.repository.model.Airport;
 import by.seledtsovaos.departure.repository.model.Country;
 import by.seledtsovaos.departure.service.converter.AirportConverter;
-import by.seledtsovaos.departure.service.converter.CountryConverter;
 import by.seledtsovaos.departure.service.dto.AirportDto;
 
 /**
@@ -18,8 +17,6 @@ public class AirportConverterImpl implements AirportConverter {
 
     @Autowired
     private CountryDao countryDao;
-    @Autowired
-    private CountryConverter countryConverter;
 
     @Override
     public AirportDto convertToDto(Airport airport) {

@@ -27,7 +27,7 @@
         <form:select path="country">
             <c:forEach var="country" items="${countries}">
                 <form:option
-                        value="${country.name}">${country.name}
+                        value="${country.name}">${fn:escapeXml(country.name)}
                 </form:option>
             </c:forEach>
         </form:select>

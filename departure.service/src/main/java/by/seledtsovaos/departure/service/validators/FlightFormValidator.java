@@ -8,6 +8,7 @@ import org.springframework.validation.Validator;
 import by.seledtsovaos.departure.service.dto.FlightDto;
 
 import static by.seledtsovaos.departure.service.validators.ErrorMessagesConstant.ERROR_MESSAGE_LENGTH;
+import static by.seledtsovaos.departure.service.validators.FieldConstant.AIRPORT_FIELD;
 import static by.seledtsovaos.departure.service.validators.FieldConstant.AIRPORT_NAME_FIELD;
 import static by.seledtsovaos.departure.service.validators.FieldConstant.COUNTRY_FIELD;
 import static by.seledtsovaos.departure.service.validators.FieldConstant.FLIGHT_NUMBER_FIELD;
@@ -30,6 +31,7 @@ public class FlightFormValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, FLIGHT_NUMBER_FIELD, "flightNumber.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, COUNTRY_FIELD, "country.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, AIRPORT_FIELD, "airportId.required");
 
         if (flightDto.getFlightNumber().length() > 100) {
             errors.rejectValue(AIRPORT_NAME_FIELD, "flightNumber.length", new Object[] {"'flightNumber'"},

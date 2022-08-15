@@ -9,6 +9,20 @@ CREATE TABLE country
     country_name VARCHAR(100) NOT NULL
 );
 /**
+ * Creates a table airport.
+ * @param airport_id airport's id, which auto-generated as a unique identifier for the record
+ * @param airport_name airport's name
+ * @param country_id country's id
+ */
+CREATE TABLE airport
+(
+    airport_id   BIGINT       NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START with 1 INCREMENT by 1),
+    airport_name VARCHAR(100) NOT NULL,
+    country_id   BIGINT       NOT NULL,
+    FOREIGN KEY (country_id) REFERENCES country (country_id)
+);
+
+/**
  * Creates a table flight.
  * @param flight_id flight's id, which auto-generated as a unique identifier for the record
  * @param flight_number flight's number
@@ -21,20 +35,8 @@ CREATE TABLE flight
     flight_number VARCHAR(100) NOT NULL,
     airport_id    BIGINT       NOT NULL,
     country_id    BIGINT       NOT NULL,
-    FOREIGN KEY (country_id) REFERENCES country (country_id)
-);
-/**
- * Creates a table aiport.
- * @param airport_id airport's id, which auto-generated as a unique identifier for the record
- * @param airport_name airport's name
- * @param country_id country's id
- */
-CREATE TABLE airport
-(
-    airport_id   BIGINT       NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START with 1 INCREMENT by 1),
-    airport_name VARCHAR(100) NOT NULL,
-    country_id   BIGINT       NOT NULL,
-    FOREIGN KEY (country_id) REFERENCES country (country_id)
+    FOREIGN KEY (country_id) REFERENCES country (country_id),
+    FOREIGN KEY (airport_id) REFERENCES airport (airport_id)
 );
 
 INSERT INTO country (country_name)

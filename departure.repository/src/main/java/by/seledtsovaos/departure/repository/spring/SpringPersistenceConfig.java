@@ -35,24 +35,5 @@ public class SpringPersistenceConfig {
         return new JdbcTemplate(dataSource());
     }
 
-//    @Bean
-//    PassengerDaoImpl passengerDaoBean() {
-//        return new PassengerDaoImpl(jdbcTemplate());
-//    }
-//
-//    @Bean
-//    FlightDaoImpl flightDaoBean() {
-//        return new FlightDaoImpl(jdbcTemplate());
-//    }
-//
-////    @Bean
-////    CountryDaoImpl countryDaoBean() {
-////        return new CountryDaoImpl(jdbcTemplate());
-////    }
-//
-//    @Bean
-//    AirportDaoImpl airportDaoBean() {
-//        return new AirportDaoImpl(jdbcTemplate());
-//    }
 }
 

@@ -59,8 +59,8 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
         mappings.setProperty("DaoException", errorJspPage);
         mappings.setProperty("ServiceException", errorJspPage);
 
-        resolver.setExceptionMappings(mappings); // None by default
-        resolver.setExceptionAttribute("exception"); // Default is "exception"
+        resolver.setExceptionMappings(mappings);
+        resolver.setExceptionAttribute("exception");
         resolver.setDefaultErrorView(errorJspPage);
         return resolver;
     }

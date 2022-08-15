@@ -72,6 +72,6 @@ public class PassengerFormValidator implements Validator {
      * @return true, if the string is non-empty and matches the regex condition
      */
     private boolean isInvalidString(String someParameter) {
-        return !someParameter.matches(PassengerFormValidator.PATTERN_TO_UPDATE_PASSENGER_PAGE);
+        return !someParameter.matches(PATTERN_TO_UPDATE_PASSENGER_PAGE);
     }
 }

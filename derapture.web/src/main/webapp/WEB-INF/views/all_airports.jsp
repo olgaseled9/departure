@@ -27,8 +27,8 @@
         </tr>
         <c:forEach var="airport" items="${airports}">
             <tr>
-                <td class="table-value">${fn:escapeXml(airport.airportName)}</td>
-                <td class="table-value">${fn:escapeXml(airport.country)}</td>
+                <td>${fn:escapeXml(airport.airportName)}</td>
+                <td>${fn:escapeXml(airport.country)}</td>
                 <td>
                     <a href="${pageContext.request.contextPath}/airport/update?id=${airport.airportId}">Update</a>
                 </td>

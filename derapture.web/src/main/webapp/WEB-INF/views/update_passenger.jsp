@@ -38,7 +38,7 @@
         <form:select path="flightId">
             <c:forEach var="flight" items="${flights}">
                 <form:option
-                        value="${flight.flightId}">${flight.flightNumber}
+                        value="${flight.flightId}">${fn:escapeXml(flight.flightNumber)}
                 </form:option>
             </c:forEach>
         </form:select>

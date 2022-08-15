@@ -3,7 +3,6 @@ plugins {
 }
 
 
-
 repositories {
     mavenCentral()
 }
@@ -16,6 +15,3 @@ dependencies {
     implementation group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.9.0'
 }
 
-test {
-
-}

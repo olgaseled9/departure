@@ -40,10 +40,6 @@ b {
     color: black;
 }
 
-.table-value {
-    white-space: pre;
-}
-
 .error-value {
     font-family: Arial, sans-serif;
     font-size: 15px;
