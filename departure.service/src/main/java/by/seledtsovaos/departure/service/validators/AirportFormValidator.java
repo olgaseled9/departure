@@ -17,7 +17,6 @@ import static by.seledtsovaos.departure.service.validators.FieldConstant.COUNTRY
 @Component
 public class AirportFormValidator implements Validator {
 
-
     @Override
     public boolean supports(Class<?> clazz) {
         return AirportDto.class.equals(clazz);

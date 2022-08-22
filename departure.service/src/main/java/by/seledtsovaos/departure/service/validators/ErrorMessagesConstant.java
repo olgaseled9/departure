@@ -18,5 +18,4 @@ public class ErrorMessagesConstant {
      */
     public static final String ERROR_MESSAGE_PASSENGER_PATTERN = "Checking the correctness of data entry.";
 
-
 }

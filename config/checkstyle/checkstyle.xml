@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE module PUBLIC
-        "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
-        "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
-<!-- 
+<!--
     Checkstyle rules definition file.
     Checkstyle provides many checks that you can apply to your sourcecode.
     http://checkstyle.sourceforge.net/availablechecks.html
@@ -86,9 +86,9 @@
         </module>
         <module name="ParenPad"/>
         <module name="MethodParamPad"/>
-<!--
-        <module name="OperatorWrap"/>
--->
+        <!--
+                <module name="OperatorWrap"/>
+        -->
 
         <!-- Modifier Checks                                    -->
         <!-- See http://checkstyle.sf.net/config_modifiers.html -->
@@ -97,11 +97,7 @@
             <property name="tokens" value="METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF, CLASS_DEF, ENUM_DEF, RESOURCE"/>
         </module>
 
-        <!-- 
-            Temporarily disabled due bug with unicode symbols 
-            for example if we have comment line of non-US chars with length of 100
-            then checkstyle will complain.
-        -->
+
         <module name="LineLength">
             <property name="max" value="130"/>
         </module>
@@ -113,13 +109,20 @@
         <module name="ParameterNumber">
             <property name="max" value="7"/>
         </module>
+        <module name="MemberName">
+            <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+            <message key="name.invalidPattern"
+                     value="Member name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="ParameterName">
+            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <message key="name.invalidPattern"
+                     value="Parameter name ''{0}'' must match pattern ''{1}''."/>
+        </module>
 
         <module name="AnonInnerLength">
             <property name="max" value="60"/>
         </module>
-
-        <!-- Checks for blocks. You know, those {}'s         -->
-        <!-- See http://checkstyle.sf.net/config_blocks.html -->
         <module name="LeftCurly">
             <property name="option" value="eol"/>
             <property name="tokens" value="CLASS_DEF,INTERFACE_DEF,CTOR_DEF, METHOD_DEF,LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE"/>
@@ -130,13 +133,6 @@
         </module>
         <module name="NeedBraces"/>
 
-        <!-- Checks for imports                              -->
-        <!-- See http://checkstyle.sf.net/config_import.html -->
-        <!--
-        <module name="AvoidStarImport">
-           <property name="excludes" value="java.io,java.net"/>
-        </module>
-        -->
         <module name="IllegalImport"> <!-- defaults to sun.* packages -->
             <property name="illegalPkgs" value="java.dummy"/>
         </module>
@@ -144,20 +140,15 @@
             <property name="groups" value="java,javax,org,net,com"/>
             <property name="ordered" value="false"/>
             <property name="separated" value="true"/>
-        </module>        
+        </module>
         <module name="UnusedImports"/>
 
-
-        <!-- 
-            Javadoc rules 
-         -->
-
         <module name="JavadocStyle">
-           <property name="tokens" value="INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
-           <property name="scope" value="protected"/>
-           <property name="checkFirstSentence" value="false"/>
-           <property name="checkEmptyJavadoc" value="false"/>
-           <property name="checkHtml" value="false"/>
+            <property name="tokens" value="INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
+            <property name="scope" value="protected"/>
+            <property name="checkFirstSentence" value="false"/>
+            <property name="checkEmptyJavadoc" value="false"/>
+            <property name="checkHtml" value="false"/>
         </module>
 
         <module name="JavadocType">
@@ -165,19 +156,6 @@
             <property name="scope" value="protected"/>
             <property name="allowMissingParamTags" value="false"/>
         </module>
-<!--
-        <module name="JavadocMethod">
-            <property name="scope" value="protected"/>
-            <property name="allowUndeclaredRTE" value="true"/>
-            <property name="allowMissingPropertyJavadoc" value="true"/>
-            <property name="allowMissingParamTags" value="true"/>
-        </module>
-
-        <module name="JavadocVariable">
-            <property name="scope" value="protected"/>
-        </module>
--->
-
         <module name="IllegalType">
             <property name="illegalClassNames" value="var"/>
         </module>
@@ -229,48 +207,12 @@
         <module name="BooleanExpressionComplexity">
             <property name="max" value="7"/>
         </module>
-
-        <!--
-                <module name="CyclomaticComplexity">
-                    <property name="max" value="7"/>
-                </module>
-
-                <module name="NPathComplexity">
-                    <property name="max" value="200"/>
-                </module>
-
-                <module name="JavaNCSS">
-                    <property name="methodMaximum" value="150"/>
-                    <property name="classMaximum" value="1500"/>
-                    <property name="fileMaximum" value="2000"/>
-                </module>
-
-
-                <module name="MagicNumber">
-                    <property name="ignoreNumbers" value="0, 0.5, 1, -1, 2"/>
-                </module>
-
-                <module name="MultipleStringLiterals">
-                    <property name="allowedDuplicates" value="2"/>
-                </module>
-
-                <module name="TodoComment">
-                    <property name="format" value="TODO:"/>
-                </module>
-        -->
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+            <message key="name.invalidPattern"
+                     value="Package name ''{0}'' must match pattern ''{1}''."/>
+        </module>
     </module>
-
-
-    <!--===============================================================================
-     Code duplication detection. Consider usge of PMD-CPD to detect duplicates.
-    ================================================================================-->
-<!--
-    <module name="StrictDuplicateCode">
-        <property name="min" value="15"/>
-        <property name="charset" value="utf-8"/>
-    </module>
--->
-
     <module name="SuppressWarningsFilter"/>
 
 </module>

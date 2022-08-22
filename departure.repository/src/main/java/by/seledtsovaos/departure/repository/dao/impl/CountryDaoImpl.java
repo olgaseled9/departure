@@ -61,7 +61,5 @@ public class CountryDaoImpl implements CountryDao {
             throw new DaoException("Country not found with name = " + countryValue, e);
         }
     }
-
-
 }
 

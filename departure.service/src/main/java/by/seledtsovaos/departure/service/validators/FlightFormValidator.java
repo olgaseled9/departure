@@ -19,7 +19,6 @@ import static by.seledtsovaos.departure.service.validators.FieldConstant.FLIGHT_
 @Component
 public class FlightFormValidator implements Validator {
 
-
     @Override
     public boolean supports(Class<?> clazz) {
         return FlightDto.class.equals(clazz);
